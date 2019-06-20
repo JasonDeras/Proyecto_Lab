@@ -22,7 +22,23 @@ public class Principal extends javax.swing.JFrame {
         jl_Historail = new javax.swing.JList<>();
         bt_Atras_Historial_Partidas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jd_MJugadores = new javax.swing.JDialog();
+        jButton1 = new javax.swing.JButton();
+        bt_TopJugadores = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jd_TopJuga = new javax.swing.JDialog();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_TopJugadores = new javax.swing.JList<>();
+        bt_Atras_TopJugadores = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         bt_Historial = new javax.swing.JButton();
+        bt_Menu_Jugadores = new javax.swing.JButton();
 
         jl_Historail.setModel( new DefaultListModel());
         jScrollPane1.setViewportView(jl_Historail);
@@ -60,12 +76,151 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+
+        bt_TopJugadores.setText("Top Jugadores");
+        bt_TopJugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_TopJugadoresActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("jButton1");
+
+        jButton4.setText("jButton1");
+
+        jButton5.setText("jButton1");
+
+        jButton6.setText("jButton1");
+
+        jButton7.setText("jButton1");
+
+        jButton8.setText("jButton1");
+
+        jButton9.setText("jButton1");
+
+        javax.swing.GroupLayout jd_MJugadoresLayout = new javax.swing.GroupLayout(jd_MJugadores.getContentPane());
+        jd_MJugadores.getContentPane().setLayout(jd_MJugadoresLayout);
+        jd_MJugadoresLayout.setHorizontalGroup(
+            jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_MJugadoresLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton9)
+                .addGap(80, 80, 80))
+            .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_MJugadoresLayout.createSequentialGroup()
+                .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                        .addGap(69, 69, 69)
+                        .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton7)
+                            .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                                .addComponent(jButton8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addComponent(jButton4))))
+                    .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton6)))
+                .addGap(139, 139, 139))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_MJugadoresLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(111, 111, 111))
+            .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                    .addGap(22, 22, 22)
+                    .addComponent(bt_TopJugadores)
+                    .addContainerGap(261, Short.MAX_VALUE)))
+        );
+        jd_MJugadoresLayout.setVerticalGroup(
+            jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(33, 33, 33)
+                        .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6)
+                            .addComponent(jButton5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addComponent(jButton8)
+                        .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton9)
+                                .addGap(38, 38, 38))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_MJugadoresLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton7)
+                                .addGap(30, 30, 30))))
+                    .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton4)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jd_MJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_MJugadoresLayout.createSequentialGroup()
+                    .addGap(41, 41, 41)
+                    .addComponent(bt_TopJugadores)
+                    .addContainerGap(234, Short.MAX_VALUE)))
+        );
+
+        jl_TopJugadores.setModel( new DefaultListModel());
+        jScrollPane2.setViewportView(jl_TopJugadores);
+
+        bt_Atras_TopJugadores.setText("Atras");
+        bt_Atras_TopJugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_Atras_TopJugadoresActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Historial de Partidas");
+
+        javax.swing.GroupLayout jd_TopJugaLayout = new javax.swing.GroupLayout(jd_TopJuga.getContentPane());
+        jd_TopJuga.getContentPane().setLayout(jd_TopJugaLayout);
+        jd_TopJugaLayout.setHorizontalGroup(
+            jd_TopJugaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_TopJugaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_TopJugaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bt_Atras_TopJugadores)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addContainerGap(155, Short.MAX_VALUE))
+        );
+        jd_TopJugaLayout.setVerticalGroup(
+            jd_TopJugaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_TopJugaLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel2)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_Atras_TopJugadores)
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         bt_Historial.setText("Historial");
         bt_Historial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_HistorialActionPerformed(evt);
+            }
+        });
+
+        bt_Menu_Jugadores.setText("Menu Jugadores");
+        bt_Menu_Jugadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_Menu_JugadoresActionPerformed(evt);
             }
         });
 
@@ -76,13 +231,17 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(bt_Historial)
-                .addContainerGap(309, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bt_Menu_Jugadores)
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(211, Short.MAX_VALUE)
-                .addComponent(bt_Historial)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_Historial)
+                    .addComponent(bt_Menu_Jugadores))
                 .addGap(64, 64, 64))
         );
 
@@ -99,8 +258,28 @@ public class Principal extends javax.swing.JFrame {
         jd_Historial_Partidas.setModal(true);
         jd_Historial_Partidas.pack();
         jd_Historial_Partidas.setLocationRelativeTo(this);
+        HistorialPartidas();
         jd_Historial_Partidas.setVisible(true);
     }//GEN-LAST:event_bt_HistorialActionPerformed
+
+    private void bt_Menu_JugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_Menu_JugadoresActionPerformed
+        // TODO add your handling code here:
+        jd_MJugadores.setModal(true);
+        jd_MJugadores.pack();
+        jd_MJugadores.setLocationRelativeTo(this);
+        TopJugadores();
+        jd_MJugadores.setVisible(true);
+    }//GEN-LAST:event_bt_Menu_JugadoresActionPerformed
+
+    private void bt_TopJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_TopJugadoresActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_bt_TopJugadoresActionPerformed
+
+    private void bt_Atras_TopJugadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_Atras_TopJugadoresActionPerformed
+        // TODO add your handling code here:
+        jd_TopJuga.dispose();
+    }//GEN-LAST:event_bt_Atras_TopJugadoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,19 +318,34 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_Atras_Historial_Partidas;
+    private javax.swing.JButton bt_Atras_TopJugadores;
     private javax.swing.JButton bt_Historial;
+    private javax.swing.JButton bt_Menu_Jugadores;
+    private javax.swing.JButton bt_TopJugadores;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDialog jd_Historial_Partidas;
+    private javax.swing.JDialog jd_MJugadores;
+    private javax.swing.JDialog jd_TopJuga;
     private javax.swing.JList<String> jl_Historail;
+    private javax.swing.JList<String> jl_TopJugadores;
     // End of variables declaration//GEN-END:variables
 
     private Historial hist = new Historial();
     private String[] historial;
+    private Jugadores jugadores = new Jugadores();
+    private Jugadores[] ArregloJ;
 
-    /**
-     * Creates new form HistorialPartidas
-     */
     public void HistorialPartidas() {
         initComponents();
         historial = hist.getHistorial();
@@ -169,5 +363,31 @@ public class Principal extends javax.swing.JFrame {
             modelo.addElement(cont + ". " + historial[i].toString());
         }
         jl_Historail.setModel(modelo);
+    }
+
+    public void TopJugadores() {
+        initComponents();
+        try {
+            ArregloJ = jugadores.Top10();
+            DefaultListModel modelo = new DefaultListModel();
+            int x = 0;
+
+            if (ArregloJ.length > 10) {
+                x = 10;
+            } else {
+                x = ArregloJ.length;
+            }
+
+            for (int i = 0; i < x; i++) {
+                String datos = ArregloJ[i].Nombre + "  " + ArregloJ[i].Puntaje;
+                modelo.addElement(datos);
+            }
+
+            jl_TopJugadores.setModel(modelo);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
+        }
+
     }
 }
