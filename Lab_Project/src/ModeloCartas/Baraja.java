@@ -1,35 +1,30 @@
 package ModeloCartas;
 
-import java.awt.*;
-import java.util.*;
+import java.awt.Color;
+import java.util.LinkedList;
 
-import Interfaces.*;
-import Controlador.*;
-import Vista.*;
+import Interfaces.ConstantesJuego;
+import Controlador.CartasListener;
+import Vista.CartaUno;
 
 public class Baraja implements ConstantesJuego {
 
-    private final ArrayList<CartasNumericas> numberCards;
-    private final ArrayList<ActionCarta> actionCards;
-    private final ArrayList<CartasEspeciales> wildCards;
-
+    private final LinkedList<CartasNumericas> numberCards;
+    private final LinkedList<ActionCarta> actionCards;
+    private final LinkedList<CartasEspeciales> wildCards;
     private LinkedList<CartaUno> UNOcards;
 
     public Baraja() {
-
-        numberCards = new ArrayList<CartasNumericas>();
-        actionCards = new ArrayList<ActionCarta>();
-        wildCards = new ArrayList<CartasEspeciales>();
-
+        numberCards = new LinkedList<CartasNumericas>();
+        actionCards = new LinkedList<ActionCarta>();
+        wildCards = new LinkedList<CartasEspeciales>();
         UNOcards = new LinkedList<CartaUno>();
-
         addCards();
-        addCardListener(CartasListener);
+        addCardListener(CARDLISTENER);
     }
 
     private void addCards() {
         for (Color color : UNO_COLORS) {
-
             for (int num : UNO_NUMBERS) {
                 int i = 0;
                 do {
@@ -37,24 +32,21 @@ public class Baraja implements ConstantesJuego {
                     i++;
                 } while (num != 0 && i < 2);
             }
-
-            //Create 24 ActionCards --> everything twice
             for (String type : ActionTypes) {
                 for (int i = 0; i < 2; i++) {
-                    UNOcards.add(new ActionCard(color, type));
+                    UNOcards.add(new ActionCarta(color, type));
                 }
             }
         }
-
         for (String type : WildTypes) {
             for (int i = 0; i < 4; i++) {
-                UNOcards.add(new WildCard(type));
+                UNOcards.add(new CartasEspeciales(type));
             }
         }
 
     }
 
-    public void addCardListener(MyCardListener listener) {
+    public void addCardListener(CartasListener listener) {
         for (CartaUno card : UNOcards) {
             card.addMouseListener(listener);
         }

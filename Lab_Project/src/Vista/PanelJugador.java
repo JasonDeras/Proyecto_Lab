@@ -1,23 +1,35 @@
 package Vista;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import ModeloCartas.*;
-import Interfaces.*;
-import Controlador.*;
-import ModeloJuego.*;
-import Controlador.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import ModeloJuego.Jugador;
+import Interfaces.ConstantesJuego;
+import Controlador.ButtomListener;
 
 public class PanelJugador extends JPanel implements ConstantesJuego {
 
     private Jugador player;
     private String name;
-
     private Box myLayout;
     private JLayeredPane cardHolder;
     private Box controlPanel;
-
     private JButton draw;
     private JButton sayUNO;
     private JLabel nameLbl;
@@ -25,38 +37,31 @@ public class PanelJugador extends JPanel implements ConstantesJuego {
 
     public PanelJugador(Jugador newPlayer) {
         setPlayer(newPlayer);
-
         myLayout = Box.createHorizontalBox();
         cardHolder = new JLayeredPane();
         cardHolder.setPreferredSize(new Dimension(600, 175));
-
         setCards();
         setControlPanel();
-
         myLayout.add(cardHolder);
         myLayout.add(Box.createHorizontalStrut(40));
         myLayout.add(controlPanel);
         add(myLayout);
-
         handler = new MyButtonHandler();
-        draw.addActionListener(ButtomListener);
+        draw.addActionListener(BUTTONLISTENER);
         draw.addActionListener(handler);
-
-        sayUNO.addActionListener(ButtomListener);
+        sayUNO.addActionListener(BUTTONLISTENER);
         sayUNO.addActionListener(handler);
     }
 
     public void setCards() {
         cardHolder.removeAll();
-
         Point origin = getPoint(cardHolder.getWidth(), player.getTotalCards());
         int offset = calculateOffset(cardHolder.getWidth(),
                 player.getTotalCards());
-
         int i = 0;
         for (CartaUno card : player.getAllCards()) {
-            card.setBounds(origin.x, origin.y, card.tamaniocarta.width,
-                    card.tamaniocarta.height);
+            card.setBounds(origin.x, origin.y, card.CARDSIZE.width,
+                    card.CARDSIZE.height);
             cardHolder.add(card, i++);
             cardHolder.moveToFront(card);
             origin.x += offset;
@@ -79,21 +84,16 @@ public class PanelJugador extends JPanel implements ConstantesJuego {
 
     private void setControlPanel() {
         draw = new JButton("Sacar");
-        sayUNO = new JButton("Decir UNO");
+        sayUNO = new JButton("UNO");
         nameLbl = new JLabel(name);
-
-        // style
         draw.setBackground(new Color(79, 129, 189));
         draw.setFont(new Font("Arial", Font.BOLD, 20));
         draw.setFocusable(false);
-
         sayUNO.setBackground(new Color(149, 55, 53));
         sayUNO.setFont(new Font("Arial", Font.BOLD, 20));
         sayUNO.setFocusable(false);
-
         nameLbl.setForeground(Color.WHITE);
         nameLbl.setFont(new Font("Arial", Font.BOLD, 15));
-
         controlPanel = Box.createVerticalBox();
         controlPanel.add(nameLbl);
         controlPanel.add(draw);
@@ -124,13 +124,11 @@ public class PanelJugador extends JPanel implements ConstantesJuego {
     class MyButtonHandler implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
-
             if (player.isMyTurn()) {
-
                 if (e.getSource() == draw) {
-                    ButtomListener.drawCard();
+                    BUTTONLISTENER.drawCard();
                 } else if (e.getSource() == sayUNO) {
-                    ButtomListener.sayUNO();
+                    BUTTONLISTENER.sayUNO();
                 }
             }
         }

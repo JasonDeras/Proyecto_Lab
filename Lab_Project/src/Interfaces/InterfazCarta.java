@@ -4,14 +4,16 @@ import java.awt.*;
 
 public interface InterfazCarta {
 
-    int ancho = 50;
-    int altura = 75;
-    Dimension pequenio = new Dimension(ancho, altura);
-    Dimension mediano = new Dimension(ancho * 2, altura * 2);
-    Dimension grande = new Dimension(ancho * 3, altura * 3);
+    int WIDTH = 50;
+    int HEIGHT = 75;
+    Dimension SMALL = new Dimension(WIDTH, HEIGHT);
+    Dimension MEDIUM = new Dimension(WIDTH * 2, HEIGHT * 2);
+    Dimension BIG = new Dimension(WIDTH * 3, HEIGHT * 3);
 
-    Dimension tamaniocarta = mediano;
+    //Default card size
+    Dimension CARDSIZE = MEDIUM;
 
+    //Default offset
     int OFFSET = 71;
 
     void setColor(Color newColor);

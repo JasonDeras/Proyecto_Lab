@@ -1,23 +1,19 @@
 package Vista;
 
-import Controlador.*;
-import Interfaces.*;
 import javax.swing.JFrame;
-import Interfaces.*;
-import ServerController.Server;
+import Interfaces.ConstantesJuego;
+import Controlador.Servidor;
 
 public class Principal extends JFrame implements ConstantesJuego {
 
     private Session mainPanel;
-    private Server server;
+    private Servidor server;
 
     public Principal() {
-        server = new Server();
-        CartasListener.setServer(server);
-        .setServer(server);
-
+        server = new Servidor();
+        CARDLISTENER.setServer(server);
+        BUTTONLISTENER.setServer(server);
         mainPanel = server.getSession();
         add(mainPanel);
     }
 }
-

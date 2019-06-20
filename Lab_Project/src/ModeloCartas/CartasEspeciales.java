@@ -12,7 +12,7 @@ public class CartasEspeciales extends CartaUno {
     }
 
     public CartasEspeciales(String cardValue) {
-        super(negro, especiales, cardValue);
+        super(BLACK, WILD, cardValue);
     }
 
     public void useWildColor(Color wildColor) {

@@ -1,6 +1,10 @@
 package Vista;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
@@ -19,14 +23,12 @@ public class PanelInformatico extends JPanel {
         setOpaque(false);
         error = "";
         text = "Game Started";
-
         updateText(text);
     }
 
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         panelCenter = getWidth() / 2;
-
         printMessage(g);
         printError(g);
         printDetail(g);
@@ -35,24 +37,19 @@ public class PanelInformatico extends JPanel {
     private void printError(Graphics g) {
         if (!error.isEmpty()) {
             Font adjustedFont = new Font("Calibri", Font.PLAIN, 25);
-
             FontMetrics fm = this.getFontMetrics(adjustedFont);
             int xPos = panelCenter - fm.stringWidth(error) / 2;
-
             g.setFont(adjustedFont);
             g.setColor(Color.red);
             g.drawString(error, xPos, 35);
-
             error = "";
         }
     }
 
     private void printMessage(Graphics g) {
         Font adjustedFont = new Font("Calibri", Font.BOLD, 25);
-
         FontMetrics fm = this.getFontMetrics(adjustedFont);
         int xPos = panelCenter - fm.stringWidth(text) / 2;
-
         g.setFont(adjustedFont);
         g.setColor(new Color(228, 108, 10));
         g.drawString(text, xPos, 75);
@@ -62,25 +59,18 @@ public class PanelInformatico extends JPanel {
         Font adjustedFont = new Font("Calibri", Font.BOLD, 25);
         FontMetrics fm = this.getFontMetrics(adjustedFont);
         g.setColor(new Color(127, 127, 127));
-
         String text = "Played Cards";
         int xPos = panelCenter - fm.stringWidth(text) / 2;
-
-        g.setFont(adjustedFont);
         g.drawString(text, xPos, 120);
-
         text = "Remaining: " + rest;
         xPos = panelCenter - fm.stringWidth(text) / 2;
         g.drawString(text, xPos, 180);
-
         adjustedFont = new Font("Calibri", Font.PLAIN, 20);
         g.setFont(adjustedFont);
         fm = this.getFontMetrics(adjustedFont);
-
         text = "You : " + you + "  PC : " + pc;
         xPos = panelCenter - fm.stringWidth(text) / 2;
         g.drawString(text, xPos, 140);
-
         text = String.valueOf(rest);
         xPos = panelCenter - fm.stringWidth(text) / 2;
     }

@@ -1,8 +1,13 @@
 package Controlador;
 
 import java.awt.Point;
-import java.awt.event.*;
-import Vista.*;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import org.omg.CORBA.Bounds;
+import Vista.Principal;
+import Vista.CartaUno;
 
 public class CartasListener extends MouseAdapter {
 
@@ -15,12 +20,10 @@ public class CartasListener extends MouseAdapter {
 
     public void mousePressed(MouseEvent e) {
         sourceCard = (CartaUno) e.getSource();
-
         try {
             if (myServer.canPlay) {
                 myServer.playThisCard(sourceCard);
             }
-
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
@@ -46,7 +49,5 @@ public class CartasListener extends MouseAdapter {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
-
 }

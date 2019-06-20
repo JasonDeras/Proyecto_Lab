@@ -1,24 +1,24 @@
 package ModeloJuego;
 
 import java.util.LinkedList;
-import View.*;
+import Vista.CartaUno;
 
 public class Jugador {
 
     private String name = null;
     private boolean isMyTurn = false;
     private boolean saidUNO = false;
-    private LinkedList<UNOCard> myCards;
+    private LinkedList<CartaUno> myCards;
 
     private int playedCards = 0;
 
     public Jugador() {
-        myCards = new LinkedList<UNOCard>();
+        myCards = new LinkedList<CartaUno>();
     }
 
     public Jugador(String player) {
         setName(player);
-        myCards = new LinkedList<UNOCard>();
+        myCards = new LinkedList<CartaUno>();
     }
 
     public void setName(String newName) {
@@ -29,11 +29,11 @@ public class Jugador {
         return this.name;
     }
 
-    public void obtainCard(UNOCard card) {
+    public void obtainCard(CartaUno card) {
         myCards.add(card);
     }
 
-    public LinkedList<UNOCard> getAllCards() {
+    public LinkedList<CartaUno> getAllCards() {
         return myCards;
     }
 
@@ -41,11 +41,11 @@ public class Jugador {
         return myCards.size();
     }
 
-    public boolean hasCard(UNOCard thisCard) {
+    public boolean hasCard(CartaUno thisCard) {
         return myCards.contains(thisCard);
     }
 
-    public void removeCard(UNOCard thisCard) {
+    public void removeCard(CartaUno thisCard) {
         myCards.remove(thisCard);
         playedCards++;
     }
@@ -79,6 +79,6 @@ public class Jugador {
     }
 
     public void setCards() {
-        myCards = new LinkedList<UNOCard>();
+        myCards = new LinkedList<CartaUno>();
     }
 }

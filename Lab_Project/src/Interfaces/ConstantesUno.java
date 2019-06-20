@@ -1,27 +1,32 @@
 package Interfaces;
 
-import java.awt.*;
+import java.awt.Color;
 
 public interface ConstantesUno {
 
-    public static Color rojo = new Color(192, 80, 77);
-    public static Color azul = new Color(31, 73, 125);
-    public static Color verde = new Color(0, 153, 0);
-    public static Color amarillo = new Color(255, 204, 0);
+    //Colors
+    public static Color RED = new Color(192, 80, 77);
+    public static Color BLUE = new Color(31, 73, 125);
+    public static Color GREEN = new Color(0, 153, 0);
+    public static Color YELLOW = new Color(255, 204, 0);
 
-    public static Color negro = new Color(0, 0, 0);
+    public static Color BLACK = new Color(0, 0, 0);
 
-    public static int numeros = 1;
-    public static int action = 2;
-    public static int especiales = 3;
+    //Types
+    public static int NUMBERS = 1;
+    public static int ACTION = 2;
+    public static int WILD = 3;
 
-    Character charreverso = (char) 8634;
-    Character charslato = (char) Integer.parseInt("2718", 16);
-    
-    String REVERSE = charreverso.toString();
-    String SKIP = charslato.toString();
-    String masdos = "2+";
+    //ActionCard Characters
+    Character charREVERSE = (char) 8634;
+    Character charSKIP = (char) Integer.parseInt("2718", 16);
 
-    String cambiocolor = "W";
-    String mascuatro = "4+";
+    //ActionCard Functions
+    String REVERSE = charREVERSE.toString();
+    String SKIP = charSKIP.toString();
+    String DRAW2PLUS = "2+";
+
+    //Wild card functions
+    String W_COLORPICKER = "W";
+    String W_DRAW4PLUS = "4+";
 }

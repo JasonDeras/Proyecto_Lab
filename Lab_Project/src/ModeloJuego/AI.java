@@ -1,25 +1,22 @@
 package ModeloJuego;
 
-import java.awt.*;
 import java.awt.Color;
-import java.awt.event.*;
-import java.util.*;
-import javax.sound.midi.*;
-import ModeloCartas.*;
-import Interfaces.*;
-import View.*;
+import java.awt.event.MouseEvent;
+import ModeloCartas.CartasEspeciales;
+import Interfaces.ConstantesJuego;
+import Vista.CartaUno;
 
-public class AI extends Jugador implements GameConstants {
+public class AI extends Jugador implements ConstantesJuego {
 
     public AI() {
         setName("PC");
         super.setCards();
     }
 
-    public AI(Player player) {
+    public AI(Jugador player) {
     }
 
-    public boolean play(UNOCard topCard) {
+    public boolean play(CartaUno topCard) {
 
         boolean done = false;
 
@@ -30,7 +27,7 @@ public class AI extends Jugador implements GameConstants {
             color = ((CartasEspeciales) topCard).getWildColor();
         }
 
-        for (UNOCard card : getAllCards()) {
+        for (CartaUno card : getAllCards()) {
 
             if (card.getColor().equals(color) || card.getValue().equals(value)) {
 
@@ -48,9 +45,8 @@ public class AI extends Jugador implements GameConstants {
                 break;
             }
         }
-
         if (!done) {
-            for (UNOCard card : getAllCards()) {
+            for (CartaUno card : getAllCards()) {
                 if (card.getType() == WILD) {
                     MouseEvent doPress = new MouseEvent(card,
                             MouseEvent.MOUSE_PRESSED,

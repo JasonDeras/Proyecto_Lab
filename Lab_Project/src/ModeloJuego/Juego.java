@@ -1,42 +1,38 @@
 package ModeloJuego;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+import Interfaces.ConstantesJuego;
+import java.awt.Color;
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.Stack;
+import javax.swing.JOptionPane;
 import ModeloCartas.*;
-import Interfaces.*;
-import View.*;
+import Interfaces.ConstantesJuego;
+import Vista.CartaUno;
 
-public class Juego implements ConstantesUno {
+public class Juego implements ConstantesJuego {
 
     private Jugador[] players;
     private boolean isOver;
     private int GAMEMODE;
-
     private AI pc;
     private Repartidor dealer;
-    private Stack<UNOCard> cardStack;
+    private Stack<CartaUno> cardStack;
 
     public Juego(int mode) {
-
         GAMEMODE = mode;
-
-        String name = (GAMEMODE == manual) ? JOptionPane.showInputDialog("Jugador 1") : "PC";
-        String name2 = JOptionPane.showInputDialog("Jugador 2");
-
+        String name = (GAMEMODE == MANUAL) ? JOptionPane.showInputDialog("Player 1") : "PC";
+        String name2 = JOptionPane.showInputDialog("Player 2");
         if (GAMEMODE == vsPC) {
             pc = new AI();
         }
-
         Jugador player1 = (GAMEMODE == vsPC) ? pc : new Jugador(name);
         Jugador player2 = new Jugador(name2);
-
+        player2.toggleTurn();
         players = new Jugador[]{player1, player2};
-
         dealer = new Repartidor();
         cardStack = dealer.shuffle();
         dealer.spreadOut(players);
-
         isOver = false;
     }
 
@@ -44,18 +40,16 @@ public class Juego implements ConstantesUno {
         return players;
     }
 
-    public UNOCard getCard() {
+    public CartaUno getCard() {
         return dealer.getCard();
     }
 
-    public void removePlayedCard(UNOCard playedCard) {
-
+    public void removePlayedCard(CartaUno playedCard) {
         for (Jugador p : players) {
             if (p.hasCard(playedCard)) {
                 p.removeCard(playedCard);
-
                 if (p.getTotalCards() == 1 && !p.getSaidUNO()) {
-                    infoPanel.setError(p.getName() + " OLVIDO DECIR UNO");
+                    infoPanel.setError(p.getName() + " Forgot to say UNO");
                     p.obtainCard(getCard());
                     p.obtainCard(getCard());
                 } else if (p.getTotalCards() > 2) {
@@ -65,19 +59,16 @@ public class Juego implements ConstantesUno {
         }
     }
 
-    public void drawCard(UNOCard topCard) {
-
+    public void drawCard(CartaUno topCard) {
         boolean canPlay = false;
-
         for (Jugador p : players) {
             if (p.isMyTurn()) {
-                UNOCard newCard = getCard();
+                CartaUno newCard = getCard();
                 p.obtainCard(newCard);
                 canPlay = canPlay(topCard, newCard);
                 break;
             }
         }
-
         if (!canPlay) {
             switchTurn();
         }
@@ -101,7 +92,6 @@ public class Juego implements ConstantesUno {
     }
 
     public void whoseTurn() {
-
         for (Jugador p : players) {
             if (p.isMyTurn()) {
                 infoPanel.updateText(p.getName() + "'s Turn");
@@ -113,19 +103,16 @@ public class Juego implements ConstantesUno {
     }
 
     public boolean isOver() {
-
         if (cardStack.isEmpty()) {
             isOver = true;
             return isOver;
         }
-
         for (Jugador p : players) {
             if (!p.hasCards()) {
                 isOver = true;
                 break;
             }
         }
-
         return isOver;
     }
 
@@ -143,8 +130,7 @@ public class Juego implements ConstantesUno {
         return nr;
     }
 
-    private boolean canPlay(UNOCard topCard, UNOCard newCard) {
-
+    private boolean canPlay(CartaUno topCard, CartaUno newCard) {
         if (topCard.getColor().equals(newCard.getColor())
                 || topCard.getValue().equals(newCard.getValue())) {
             return true;
@@ -160,7 +146,7 @@ public class Juego implements ConstantesUno {
         for (Jugador p : players) {
             if (p.isMyTurn()) {
                 if (p.getTotalCards() == 1 && !p.getSaidUNO()) {
-                    infoPanel.setError(p.getName() + " OLVIDO DECIR UNO");
+                    infoPanel.setError(p.getName() + " Forgot to say UNO");
                     p.obtainCard(getCard());
                     p.obtainCard(getCard());
                 }
@@ -173,7 +159,7 @@ public class Juego implements ConstantesUno {
             if (p.isMyTurn()) {
                 if (p.getTotalCards() == 2) {
                     p.saysUNO();
-                    infoPanel.setError(p.getName() + " DIJO UNO");
+                    infoPanel.setError(p.getName() + " said UNO");
                 }
             }
         }
@@ -186,11 +172,9 @@ public class Juego implements ConstantesUno {
         return false;
     }
 
-    public void playPC(UNOCard topCard) {
-
+    public void playPC(CartaUno topCard) {
         if (pc.isMyTurn()) {
             boolean done = pc.play(topCard);
-
             if (!done) {
                 drawCard(topCard);
             }

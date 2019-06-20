@@ -1,54 +1,48 @@
 package ModeloJuego;
 
-import java.util.*;
-import ModeloCartas.*;
-import Interfaces.*;
-import View.*;
-import View.*;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.Random;
+import java.util.Stack;
+import ModeloCartas.Baraja;
+import Interfaces.ConstantesJuego;
+import Vista.PanelJugador;
+import Vista.CartaUno;
 
 public class Repartidor implements ConstantesJuego {
 
     private Baraja cardDeck;
-    private Stack<UNOCard> CardStack;
+    private Stack<CartaUno> CardStack;
 
     public Repartidor() {
         this.cardDeck = new Baraja();
     }
 
-    public Stack<UNOCard> shuffle() {
-
-        LinkedList<UNOCard> DeckOfCards = cardDeck.getCards();
-        LinkedList<UNOCard> shuffledCards = new LinkedList<UNOCard>();
-
+    public Stack<CartaUno> shuffle() {
+        LinkedList<CartaUno> DeckOfCards = cardDeck.getCards();
+        LinkedList<CartaUno> shuffledCards = new LinkedList<CartaUno>();
         while (!DeckOfCards.isEmpty()) {
             int totalCards = DeckOfCards.size();
-
             Random random = new Random();
             int pos = (Math.abs(random.nextInt())) % totalCards;
-
-            UNOCard randomCard = DeckOfCards.get(pos);
+            CartaUno randomCard = DeckOfCards.get(pos);
             DeckOfCards.remove(pos);
             shuffledCards.add(randomCard);
         }
-
-        CardStack = new Stack<UNOCard>();
-        for (UNOCard card : shuffledCards) {
+        CardStack = new Stack<CartaUno>();
+        for (CartaUno card : shuffledCards) {
             CardStack.add(card);
         }
-
         return CardStack;
     }
 
     public void spreadOut(Jugador[] players) {
-
-        for (int i = 1; i <= primera_mano; i++) {
-            for (Jugador p : players) {
-                p.obtainCard(CardStack.pop());
-            }
+        for (Jugador p : players) {
+            p.obtainCard(CardStack.pop());
         }
     }
 
-    public UNOCard getCard() {
+    public CartaUno getCard() {
         return CardStack.pop();
     }
 }

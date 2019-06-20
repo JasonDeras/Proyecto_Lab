@@ -1,8 +1,7 @@
 package ModeloCartas;
 
 import java.awt.*;
-
-import Vista.*;
+import Vista.CartaUno;
 
 public class ActionCarta extends CartaUno {
 
@@ -11,9 +10,7 @@ public class ActionCarta extends CartaUno {
     public ActionCarta() {
     }
 
-    public ActionCarta(Color cardColor, int cardType, String cardValue) {
-        super(cardColor, cardType, cardValue);
+    public ActionCarta(Color cardColor, String cardValue) {
+        super(cardColor, ACTION, cardValue);
     }
-
-    
 }
