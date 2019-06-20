@@ -9,17 +9,17 @@ import View.*;
 
 public class Baraja implements GameConstants {
 
-    private final LinkedList<NumberCard> numberCards;
-    private final LinkedList<ActionCard> actionCards;
-    private final LinkedList<WildCard> wildCards;
+    private final ArrayList<CartasNumericas> numberCards;
+    private final ArrayList<ActionCard> actionCards;
+    private final ArrayList<CartasEspeciales> wildCards;
 
     private LinkedList<UNOCard> UNOcards;
 
     public Baraja() {
 
-        numberCards = new LinkedList<NumberCard>();
-        actionCards = new LinkedList<ActionCard>();
-        wildCards = new LinkedList<WildCard>();
+        numberCards = new ArrayList<CartasNumericas>();
+        actionCards = new ArrayList<ActionCard>();
+        wildCards = new ArrayList<CartasEspeciales>();
 
         UNOcards = new LinkedList<UNOCard>();
 
