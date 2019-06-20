@@ -1,19 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package lab_project;
 
-/**
- *
- * @author jason
- */
+import javax.swing.*;
+
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
     }
@@ -27,21 +17,90 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jd_Historial_Partidas = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jl_Historail = new javax.swing.JList<>();
+        bt_Atras_Historial_Partidas = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        bt_Historial = new javax.swing.JButton();
+
+        jl_Historail.setModel( new DefaultListModel());
+        jScrollPane1.setViewportView(jl_Historail);
+
+        bt_Atras_Historial_Partidas.setText("Atras");
+        bt_Atras_Historial_Partidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_Atras_Historial_PartidasActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Historial de Partidas");
+
+        javax.swing.GroupLayout jd_Historial_PartidasLayout = new javax.swing.GroupLayout(jd_Historial_Partidas.getContentPane());
+        jd_Historial_Partidas.getContentPane().setLayout(jd_Historial_PartidasLayout);
+        jd_Historial_PartidasLayout.setHorizontalGroup(
+            jd_Historial_PartidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_Historial_PartidasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jd_Historial_PartidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bt_Atras_Historial_Partidas)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(155, Short.MAX_VALUE))
+        );
+        jd_Historial_PartidasLayout.setVerticalGroup(
+            jd_Historial_PartidasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_Historial_PartidasLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bt_Atras_Historial_Partidas)
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        bt_Historial.setText("Historial");
+        bt_Historial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_HistorialActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bt_Historial)
+                .addContainerGap(309, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(211, Short.MAX_VALUE)
+                .addComponent(bt_Historial)
+                .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bt_Atras_Historial_PartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_Atras_Historial_PartidasActionPerformed
+        // TODO add your handling code here:
+        jd_Historial_Partidas.dispose();
+    }//GEN-LAST:event_bt_Atras_Historial_PartidasActionPerformed
+
+    private void bt_HistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_HistorialActionPerformed
+        // TODO add your handling code here:
+        jd_Historial_Partidas.setModal(true);
+        jd_Historial_Partidas.pack();
+        jd_Historial_Partidas.setLocationRelativeTo(this);
+        jd_Historial_Partidas.setVisible(true);
+    }//GEN-LAST:event_bt_HistorialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +138,36 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_Atras_Historial_Partidas;
+    private javax.swing.JButton bt_Historial;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JDialog jd_Historial_Partidas;
+    private javax.swing.JList<String> jl_Historail;
     // End of variables declaration//GEN-END:variables
+
+    private Historial hist = new Historial();
+    private String[] historial;
+
+    /**
+     * Creates new form HistorialPartidas
+     */
+    public void HistorialPartidas() {
+        initComponents();
+        historial = hist.getHistorial();
+        DefaultListModel modelo = new DefaultListModel();
+
+        int x = 0, cont = 0;
+        if (historial.length > 10) {
+            x = 10;
+        } else {
+            x = historial.length;
+        }
+
+        for (int i = x - 1; i >= 0; i--) {
+            cont++;
+            modelo.addElement(cont + ". " + historial[i].toString());
+        }
+        jl_Historail.setModel(modelo);
+    }
 }

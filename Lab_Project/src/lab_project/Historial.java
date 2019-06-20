@@ -13,7 +13,7 @@ public class Historial {
 
     public Historial() {
         try {
-            rHistorial = new RandomAccessFile("Partidas\\Historial.uno", "rw");
+            rHistorial = new RandomAccessFile("./Historial.uno", "rw");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
         }
