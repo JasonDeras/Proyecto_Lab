@@ -4,27 +4,27 @@ import java.awt.*;
 import java.util.*;
 
 import Interfaces.*;
-import ServerController.*;
-import View.*;
+import Controlador.*;
+import Vista.*;
 
-public class Baraja implements GameConstants {
+public class Baraja implements ConstantesJuego {
 
     private final ArrayList<CartasNumericas> numberCards;
-    private final ArrayList<ActionCard> actionCards;
+    private final ArrayList<ActionCarta> actionCards;
     private final ArrayList<CartasEspeciales> wildCards;
 
-    private LinkedList<UNOCard> UNOcards;
+    private LinkedList<CartaUno> UNOcards;
 
     public Baraja() {
 
         numberCards = new ArrayList<CartasNumericas>();
-        actionCards = new ArrayList<ActionCard>();
+        actionCards = new ArrayList<ActionCarta>();
         wildCards = new ArrayList<CartasEspeciales>();
 
-        UNOcards = new LinkedList<UNOCard>();
+        UNOcards = new LinkedList<CartaUno>();
 
         addCards();
-        addCardListener(CARDLISTENER);
+        addCardListener(CartasListener);
     }
 
     private void addCards() {
@@ -33,7 +33,7 @@ public class Baraja implements GameConstants {
             for (int num : UNO_NUMBERS) {
                 int i = 0;
                 do {
-                    UNOcards.add(new NumberCard(color, Integer.toString(num)));
+                    UNOcards.add(new CartasNumericas(color, Integer.toString(num)));
                     i++;
                 } while (num != 0 && i < 2);
             }
@@ -55,12 +55,12 @@ public class Baraja implements GameConstants {
     }
 
     public void addCardListener(MyCardListener listener) {
-        for (UNOCard card : UNOcards) {
+        for (CartaUno card : UNOcards) {
             card.addMouseListener(listener);
         }
     }
 
-    public LinkedList<UNOCard> getCards() {
+    public LinkedList<CartaUno> getCards() {
         return UNOcards;
     }
 }

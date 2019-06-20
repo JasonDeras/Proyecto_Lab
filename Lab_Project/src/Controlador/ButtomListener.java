@@ -5,9 +5,9 @@ import java.awt.event.ActionListener;
 
 public class ButtomListener implements ActionListener {
 
-    Server myServer;
+    Servidor myServer;
 
-    public void setServer(Server server) {
+    public void setServer(Servidor server) {
         myServer = server;
     }
 

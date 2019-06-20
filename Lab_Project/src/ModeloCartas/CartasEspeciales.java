@@ -1,9 +1,9 @@
 package ModeloCartas;
 
 import java.awt.*;
-import View.*;
+import Vista.*;
 
-public class CartasEspeciales extends UNOCard {
+public class CartasEspeciales extends CartaUno {
 
     private int Function = 0;
     private Color chosenColor;
@@ -12,7 +12,7 @@ public class CartasEspeciales extends UNOCard {
     }
 
     public CartasEspeciales(String cardValue) {
-        super(BLACK, WILD, cardValue);
+        super(negro, especiales, cardValue);
     }
 
     public void useWildColor(Color wildColor) {

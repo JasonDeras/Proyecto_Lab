@@ -1,18 +1,16 @@
 package ModeloCartas;
 
 import java.awt.*;
+import Vista.*;
 
-import View.*;
 
-
-    public class CartasNumericas extends UNOCard {
+    public class CartasNumericas extends CartaUno {
 
         public CartasNumericas() {
         }
 
         public CartasNumericas(Color cardColor, String cardValue) {
-            super(cardColor, NUMBERS, cardValue);
+            super(cardColor, numeros, cardValue);
         }
 
     }
-}

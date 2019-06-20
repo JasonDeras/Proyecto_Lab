@@ -2,9 +2,8 @@ package Interfaces;
 
 import java.awt.Color;
 import javax.swing.*;
-import ServerController.*;
-import ServerController.*;
-import View.*;
+import Controlador.*;
+import Vista.*;
 
 public interface ConstantesJuego extends ConstantesUno {
 
@@ -23,8 +22,8 @@ public interface ConstantesJuego extends ConstantesUno {
 
     int[] modosjuegos = {vsPC, manual};
 
-    MyCardListener CARDLISTENER = new MyCardListener();
-    MyButtonListener BUTTONLISTENER = new MyButtonListener();
+    CartasListener CARDLISTENER = new CartasListener();
+    ButtomListener BUTTONLISTENER = new ButtomListener();
 
-    InfoPanel infoPanel = new InfoPanel();
+    PanelInformatico infoPanel = new PanelInformatico();
 }

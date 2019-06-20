@@ -2,16 +2,18 @@ package ModeloCartas;
 
 import java.awt.*;
 
-import View.UNOCard;
+import Vista.*;
 
-public class ActionCarta extends UNOCard {
+public class ActionCarta extends CartaUno {
 
     private int Function = 0;
 
     public ActionCarta() {
     }
 
-    public ActionCarta(Color cardColor, String cardValue) {
-        super(cardColor, ACTION, cardValue);
+    public ActionCarta(Color cardColor, int cardType, String cardValue) {
+        super(cardColor, cardType, cardValue);
     }
+
+    
 }
