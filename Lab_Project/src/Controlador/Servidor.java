@@ -1,36 +1,31 @@
 package Controlador;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Stack;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import ModeloCartas.CartasEspeciales;
-import ModeloJuego.Juego;
-import ModeloJuego.Jugador;
-import Interfaces.ConstantesJuego;
-import Vista.Session;
-import Vista.CartaUno;
+import java.awt.*;
+import java.util.*;
+import javax.swing.*;
+import ModeloCartas.*;
+import ModeloJuego.*;
+import Interfaces.*;
+import Vista.*;
 
 public class Servidor implements ConstantesJuego {
 
-    private Juego game;
-    private Session session;
-    private Stack<CartaUno> playedCards;
-    public boolean canPlay;
+    private Juego juego;
+    private Session ses;
+    private Stack<CartaUno> cartasjugadas;
+    public boolean puedejugar;
     private int mode;
 
     public Servidor() {
         mode = requestMode();
-        game = new Juego(mode);
-        playedCards = new Stack<CartaUno>();
-        CartaUno firstCard = game.getCard();
+        juego = new Juego(mode);
+        cartasjugadas = new Stack<CartaUno>();
+        CartaUno firstCard = juego.getCard();
         modifyFirstCard(firstCard);
-        playedCards.add(firstCard);
-        session = new Session(game, firstCard);
-        game.whoseTurn();
-        canPlay = true;
+        cartasjugadas.add(firstCard);
+        ses = new Session(juego, firstCard);
+        juego.whoseTurn();
+        puedejugar = true;
     }
 
     private int requestMode() {
@@ -48,10 +43,10 @@ public class Servidor implements ConstantesJuego {
 
     private void modifyFirstCard(CartaUno firstCard) {
         firstCard.removeMouseListener(CARDLISTENER);
-        if (firstCard.getType() == WILD) {
+        if (firstCard.getType() == especiales) {
             int random = new Random().nextInt() % 4;
             try {
-                ((CartasEspeciales) firstCard).useWildColor(UNO_COLORS[Math.abs(random)]);
+                ((CartasEspeciales) firstCard).useWildColor(colores_uno[Math.abs(random)]);
             } catch (Exception ex) {
                 System.out.println("something wrong with modifyFirstcard");
             }
@@ -59,60 +54,54 @@ public class Servidor implements ConstantesJuego {
     }
 
     public Session getSession() {
-        return this.session;
+        return this.ses;
     }
 
     public void playThisCard(CartaUno clickedCard) {
-
         if (!isHisTurn(clickedCard)) {
             infoPanel.setError("It's not your turn");
             infoPanel.repaint();
         } else {
-
             if (isValidMove(clickedCard)) {
-
                 clickedCard.removeMouseListener(CARDLISTENER);
-                playedCards.add(clickedCard);
-                game.removePlayedCard(clickedCard);
-
-                // function cards ??
+                cartasjugadas.add(clickedCard);
+                juego.removePlayedCard(clickedCard);
                 switch (clickedCard.getType()) {
-                    case ACTION:
+                    case accion:
                         performAction(clickedCard);
                         break;
-                    case WILD:
+                    case especiales:
                         performWild((CartasEspeciales) clickedCard);
                         break;
                     default:
                         break;
                 }
-                game.switchTurn();
-                session.updatePanel(clickedCard);
+                juego.switchTurn();
+                ses.updatePanel(clickedCard);
                 checkResults();
             } else {
                 infoPanel.setError("invalid move");
                 infoPanel.repaint();
 
             }
-            if (mode == vsPC && canPlay) {
-                if (game.isPCsTurn()) {
-                    game.playPC(peekTopCard());
+            if (mode == vsPC && puedejugar) {
+                if (juego.isPCsTurn()) {
+                    juego.playPC(peekTopCard());
                 }
             }
         }
     }
 
     private void checkResults() {
-
-        if (game.isOver()) {
-            canPlay = false;
+        if (juego.fin()) {
+            puedejugar = false;
             infoPanel.updateText("GAME OVER");
         }
     }
 
     public boolean isHisTurn(CartaUno clickedCard) {
-        for (Jugador p : game.getPlayers()) {
-            if (p.hasCard(clickedCard) && p.isMyTurn()) {
+        for (Jugador p : juego.getPlayers()) {
+            if (p.hasCard(clickedCard) && p.miturno()) {
                 return true;
             }
         }
@@ -124,9 +113,9 @@ public class Servidor implements ConstantesJuego {
         if (playedCard.getColor().equals(topCard.getColor())
                 || playedCard.getValue().equals(topCard.getValue())) {
             return true;
-        } else if (playedCard.getType() == WILD) {
+        } else if (playedCard.getType() == especiales) {
             return true;
-        } else if (topCard.getType() == WILD) {
+        } else if (topCard.getType() == especiales) {
             Color color = ((CartasEspeciales) topCard).getWildColor();
             if (color.equals(playedCard.getColor())) {
                 return true;
@@ -137,18 +126,18 @@ public class Servidor implements ConstantesJuego {
 
     private void performAction(CartaUno actionCard) {
         if (actionCard.getValue().equals(DRAW2PLUS)) {
-            game.drawPlus(2);
+            juego.drawPlus(2);
         } else if (actionCard.getValue().equals(REVERSE)) {
-            game.switchTurn();
+            juego.switchTurn();
         } else if (actionCard.getValue().equals(SKIP)) {
-            game.switchTurn();
+            juego.switchTurn();
         }
     }
 
     private void performWild(CartasEspeciales functionCard) {
-        if (mode == 1 && game.isPCsTurn()) {
+        if (mode == 1 && juego.isPCsTurn()) {
             int random = new Random().nextInt() % 4;
-            functionCard.useWildColor(UNO_COLORS[Math.abs(random)]);
+            functionCard.useWildColor(colores_uno[Math.abs(random)]);
         } else {
             ArrayList<String> colors = new ArrayList<String>();
             colors.add("RED");
@@ -159,28 +148,28 @@ public class Servidor implements ConstantesJuego {
                     "Elija un color", "Wild Card Color",
                     JOptionPane.DEFAULT_OPTION, null, colors.toArray(), null);
 
-            functionCard.useWildColor(UNO_COLORS[colors.indexOf(chosenColor)]);
+            functionCard.useWildColor(colores_uno[colors.indexOf(chosenColor)]);
         }
         if (functionCard.getValue().equals(W_DRAW4PLUS)) {
-            game.drawPlus(4);
+            juego.drawPlus(4);
         }
     }
 
     public void requestCard() {
-        game.drawCard(peekTopCard());
-        if (mode == vsPC && canPlay) {
-            if (game.isPCsTurn()) {
-                game.playPC(peekTopCard());
+        juego.drawCard(peekTopCard());
+        if (mode == vsPC && puedejugar) {
+            if (juego.isPCsTurn()) {
+                juego.playPC(peekTopCard());
             }
         }
-        session.refreshPanel();
+        ses.refreshPanel();
     }
 
     public CartaUno peekTopCard() {
-        return playedCards.peek();
+        return cartasjugadas.peek();
     }
 
     public void submitSaidUNO() {
-        game.setSaidUNO();
+        juego.setSaidUNO();
     }
 }

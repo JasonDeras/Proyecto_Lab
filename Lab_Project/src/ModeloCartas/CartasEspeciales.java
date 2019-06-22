@@ -5,14 +5,13 @@ import Vista.*;
 
 public class CartasEspeciales extends CartaUno {
 
-    private int Function = 0;
     private Color chosenColor;
 
     public CartasEspeciales() {
     }
 
     public CartasEspeciales(String cardValue) {
-        super(BLACK, WILD, cardValue);
+        super(BLACK, especiales, cardValue);
     }
 
     public void useWildColor(Color wildColor) {

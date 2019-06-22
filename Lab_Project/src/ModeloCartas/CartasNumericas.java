@@ -9,7 +9,7 @@ public class CartasNumericas extends CartaUno {
     }
 
     public CartasNumericas(Color cardColor, String cardValue) {
-        super(cardColor, NUMBERS, cardValue);
+        super(cardColor, numeros, cardValue);
     }
 
 }

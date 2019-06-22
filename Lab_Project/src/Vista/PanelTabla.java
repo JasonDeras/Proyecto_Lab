@@ -1,22 +1,9 @@
 package Vista;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.LayoutManager;
-import javax.swing.Box;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import ModeloCartas.CartasEspeciales;
-import Interfaces.ConstantesJuego;
-import Interfaces.ConstantesUno;
+import java.awt.*;
+import javax.swing.*;
+import ModeloCartas.*;
+import Interfaces.*;
 
 public class PanelTabla extends JPanel implements ConstantesJuego {
 
@@ -68,7 +55,7 @@ public class PanelTabla extends JPanel implements ConstantesJuego {
 
     public void setBackgroundColor(CartaUno playedCard) {
         Color background;
-        if (playedCard.getType() == WILD) {
+        if (playedCard.getType() == especiales) {
             background = ((CartasEspeciales) playedCard).getWildColor();
         } else {
             background = playedCard.getColor();

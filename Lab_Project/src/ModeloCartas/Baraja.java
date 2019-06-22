@@ -24,21 +24,21 @@ public class Baraja implements ConstantesJuego {
     }
 
     private void addCards() {
-        for (Color color : UNO_COLORS) {
-            for (int num : UNO_NUMBERS) {
+        for (Color color : colores_uno) {
+            for (int num : cartas_numericas) {
                 int i = 0;
                 do {
                     UNOcards.add(new CartasNumericas(color, Integer.toString(num)));
                     i++;
                 } while (num != 0 && i < 2);
             }
-            for (String type : ActionTypes) {
+            for (String type : tipos_acciones) {
                 for (int i = 0; i < 2; i++) {
                     UNOcards.add(new ActionCarta(color, type));
                 }
             }
         }
-        for (String type : WildTypes) {
+        for (String type : tipos_expeciales) {
             for (int i = 0; i < 4; i++) {
                 UNOcards.add(new CartasEspeciales(type));
             }

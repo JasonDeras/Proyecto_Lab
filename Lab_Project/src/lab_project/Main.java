@@ -10,6 +10,7 @@ public class Main {
             public void run() {
                 JFrame frame = new Principal();
                 frame.setVisible(true);
+                frame.setTitle("Juego de UNO");
                 frame.setResizable(false);
                 frame.setLocation(200, 100);
                 frame.pack();

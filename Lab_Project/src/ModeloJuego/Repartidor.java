@@ -1,25 +1,21 @@
 package ModeloJuego;
 
-import java.awt.event.MouseEvent;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.Stack;
-import ModeloCartas.Baraja;
-import Interfaces.ConstantesJuego;
-import Vista.PanelJugador;
-import Vista.CartaUno;
+import java.util.*;
+import ModeloCartas.*;
+import Interfaces.*;
+import Vista.*;
 
 public class Repartidor implements ConstantesJuego {
 
-    private Baraja cardDeck;
-    private Stack<CartaUno> CardStack;
+    private Baraja baraja;
+    private Stack<CartaUno> barajar;
 
     public Repartidor() {
-        this.cardDeck = new Baraja();
+        this.baraja = new Baraja();
     }
 
     public Stack<CartaUno> shuffle() {
-        LinkedList<CartaUno> DeckOfCards = cardDeck.getCards();
+        LinkedList<CartaUno> DeckOfCards = baraja.getCards();
         LinkedList<CartaUno> shuffledCards = new LinkedList<CartaUno>();
         while (!DeckOfCards.isEmpty()) {
             int totalCards = DeckOfCards.size();
@@ -29,20 +25,20 @@ public class Repartidor implements ConstantesJuego {
             DeckOfCards.remove(pos);
             shuffledCards.add(randomCard);
         }
-        CardStack = new Stack<CartaUno>();
+        barajar = new Stack<CartaUno>();
         for (CartaUno card : shuffledCards) {
-            CardStack.add(card);
+            barajar.add(card);
         }
-        return CardStack;
+        return barajar;
     }
 
     public void spreadOut(Jugador[] players) {
         for (Jugador p : players) {
-            p.obtainCard(CardStack.pop());
+            p.obtainCard(barajar.pop());
         }
     }
 
     public CartaUno getCard() {
-        return CardStack.pop();
+        return barajar.pop();
     }
 }

@@ -17,20 +17,17 @@ public class AI extends Jugador implements ConstantesJuego {
     }
 
     public boolean play(CartaUno topCard) {
-
         boolean done = false;
-
         Color color = topCard.getColor();
         String value = topCard.getValue();
-
-        if (topCard.getType() == WILD) {
+        
+        if (topCard.getType() == especiales) {
             color = ((CartasEspeciales) topCard).getWildColor();
         }
-
+        
         for (CartaUno card : getAllCards()) {
-
+            
             if (card.getColor().equals(color) || card.getValue().equals(value)) {
-
                 MouseEvent doPress = new MouseEvent(card, MouseEvent.MOUSE_PRESSED,
                         System.currentTimeMillis(),
                         (int) MouseEvent.MOUSE_EVENT_MASK, 5, 5, 1, true);
@@ -45,9 +42,11 @@ public class AI extends Jugador implements ConstantesJuego {
                 break;
             }
         }
+        
         if (!done) {
+            
             for (CartaUno card : getAllCards()) {
-                if (card.getType() == WILD) {
+                if (card.getType() == especiales) {
                     MouseEvent doPress = new MouseEvent(card,
                             MouseEvent.MOUSE_PRESSED,
                             System.currentTimeMillis(),

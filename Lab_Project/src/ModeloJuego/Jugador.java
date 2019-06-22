@@ -5,48 +5,48 @@ import Vista.CartaUno;
 
 public class Jugador {
 
-    private String name = null;
-    private boolean isMyTurn = false;
-    private boolean saidUNO = false;
-    private LinkedList<CartaUno> myCards;
+    private String nombre = null;
+    private boolean miturno = false;
+    private boolean digouno = false;
+    private LinkedList<CartaUno> miscartas;
 
     private int playedCards = 0;
 
     public Jugador() {
-        myCards = new LinkedList<CartaUno>();
+        miscartas = new LinkedList<CartaUno>();
     }
 
     public Jugador(String player) {
         setName(player);
-        myCards = new LinkedList<CartaUno>();
+        miscartas = new LinkedList<CartaUno>();
     }
 
     public void setName(String newName) {
-        name = newName;
+        nombre = newName;
     }
 
     public String getName() {
-        return this.name;
+        return this.nombre;
     }
 
     public void obtainCard(CartaUno card) {
-        myCards.add(card);
+        miscartas.add(card);
     }
 
     public LinkedList<CartaUno> getAllCards() {
-        return myCards;
+        return miscartas;
     }
 
     public int getTotalCards() {
-        return myCards.size();
+        return miscartas.size();
     }
 
     public boolean hasCard(CartaUno thisCard) {
-        return myCards.contains(thisCard);
+        return miscartas.contains(thisCard);
     }
 
     public void removeCard(CartaUno thisCard) {
-        myCards.remove(thisCard);
+        miscartas.remove(thisCard);
         playedCards++;
     }
 
@@ -55,30 +55,30 @@ public class Jugador {
     }
 
     public void toggleTurn() {
-        isMyTurn = (isMyTurn) ? false : true;
+        miturno = (miturno) ? false : true;
     }
 
-    public boolean isMyTurn() {
-        return isMyTurn;
+    public boolean miturno() {
+        return miturno;
     }
 
     public boolean hasCards() {
-        return (myCards.isEmpty()) ? false : true;
+        return (miscartas.isEmpty()) ? false : true;
     }
 
     public boolean getSaidUNO() {
-        return saidUNO;
+        return digouno;
     }
 
     public void saysUNO() {
-        saidUNO = true;
+        digouno = true;
     }
 
     public void setSaidUNOFalse() {
-        saidUNO = false;
+        digouno = false;
     }
 
     public void setCards() {
-        myCards = new LinkedList<CartaUno>();
+        miscartas = new LinkedList<CartaUno>();
     }
 }

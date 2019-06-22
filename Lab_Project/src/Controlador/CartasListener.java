@@ -1,28 +1,24 @@
 package Controlador;
 
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import org.omg.CORBA.Bounds;
-import Vista.Principal;
 import Vista.CartaUno;
 
 public class CartasListener extends MouseAdapter {
 
-    CartaUno sourceCard;
-    Servidor myServer;
+    CartaUno carta;
+    Servidor ser;
 
     public void setServer(Servidor server) {
-        myServer = server;
+        ser = server;
     }
 
     public void mousePressed(MouseEvent e) {
-        sourceCard = (CartaUno) e.getSource();
+        carta = (CartaUno) e.getSource();
         try {
-            if (myServer.canPlay) {
-                myServer.playThisCard(sourceCard);
+            if (ser.puedejugar) {
+                ser.playThisCard(carta);
             }
         } catch (NullPointerException ex) {
             ex.printStackTrace();
@@ -33,18 +29,18 @@ public class CartasListener extends MouseAdapter {
     public void mouseEntered(MouseEvent e) {
         super.mouseEntered(e);
 
-        sourceCard = (CartaUno) e.getSource();
-        Point p = sourceCard.getLocation();
+        carta = (CartaUno) e.getSource();
+        Point p = carta.getLocation();
         p.y -= 20;
-        sourceCard.setLocation(p);
+        carta.setLocation(p);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        sourceCard = (CartaUno) e.getSource();
-        Point p = sourceCard.getLocation();
+        carta = (CartaUno) e.getSource();
+        Point p = carta.getLocation();
         p.y += 20;
-        sourceCard.setLocation(p);
+        carta.setLocation(p);
     }
 
     @Override

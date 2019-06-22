@@ -19,20 +19,20 @@ import Interfaces.ConstantesUno;
 
 public abstract class CartaUno extends JPanel implements InterfazCarta, ConstantesUno {
 
-    private Color cardColor = null;
-    private String value = null;
-    private int type = 0;
+    private Color cartacolor = null;
+    private String valor = null;
+    private int tipo = 0;
     private Border defaultBorder = BorderFactory.createEtchedBorder(WHEN_FOCUSED, Color.white, Color.gray);
     private Border focusedBorder = BorderFactory.createEtchedBorder(WHEN_FOCUSED, Color.black, Color.gray);
 
     public CartaUno() {
     }
 
-    public CartaUno(Color cardColor, int cardType, String cardValue) {
-        this.cardColor = cardColor;
-        this.type = cardType;
-        this.value = cardValue;
-        this.setPreferredSize(CARDSIZE);
+    public CartaUno(Color cartacolor, int tipo, String valor) {
+        this.cartacolor = cartacolor;
+        this.tipo = tipo;
+        this.valor = valor;
+        this.setPreferredSize(tamaño_cartas);
         this.setBorder(defaultBorder);
         this.addMouseListener(new MouseHandler());
     }
@@ -40,12 +40,12 @@ public abstract class CartaUno extends JPanel implements InterfazCarta, Constant
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        int cardWidth = CARDSIZE.width;
-        int cardHeight = CARDSIZE.height;
+        int cardWidth = tamaño_cartas.width;
+        int cardHeight = tamaño_cartas.height;
         g2.setColor(Color.WHITE);
         g2.fillRect(0, 0, cardWidth, cardHeight);
         int margin = 5;
-        g2.setColor(cardColor);
+        g2.setColor(cartacolor);
         g2.fillRect(margin, margin, cardWidth - 2 * margin, cardHeight - 2 * margin);
         g2.setColor(Color.white);
         AffineTransform org = g2.getTransform();
@@ -54,18 +54,18 @@ public abstract class CartaUno extends JPanel implements InterfazCarta, Constant
         g2.setTransform(org);
         Font defaultFont = new Font("Helvetica", Font.BOLD, cardWidth / 2 + 5);
         FontMetrics fm = this.getFontMetrics(defaultFont);
-        int StringWidth = fm.stringWidth(value) / 2;
+        int StringWidth = fm.stringWidth(valor) / 2;
         int FontHeight = defaultFont.getSize() * 1 / 3;
-        g2.setColor(cardColor);
+        g2.setColor(cartacolor);
         g2.setFont(defaultFont);
-        g2.drawString(value, cardWidth / 2 - StringWidth, cardHeight / 2 + FontHeight);
+        g2.drawString(valor, cardWidth / 2 - StringWidth, cardHeight / 2 + FontHeight);
         defaultFont = new Font("Helvetica", Font.ITALIC, cardWidth / 5);
         fm = this.getFontMetrics(defaultFont);
-        StringWidth = fm.stringWidth(value) / 2;
+        StringWidth = fm.stringWidth(valor) / 2;
         FontHeight = defaultFont.getSize() * 1 / 3;
         g2.setColor(Color.white);
         g2.setFont(defaultFont);
-        g2.drawString(value, 2 * margin, 5 * margin);
+        g2.drawString(valor, 2 * margin, 5 * margin);
     }
 
     class MouseHandler extends MouseAdapter {
@@ -84,30 +84,30 @@ public abstract class CartaUno extends JPanel implements InterfazCarta, Constant
     }
 
     public void setColor(Color newColor) {
-        this.cardColor = newColor;
+        this.cartacolor = newColor;
     }
 
     public Color getColor() {
-        return cardColor;
+        return cartacolor;
     }
 
     @Override
-    public void setValue(String newValue) {
-        this.value = newValue;
+    public void setValue(String valor) {
+        this.valor = valor;
     }
 
     @Override
     public String getValue() {
-        return value;
+        return valor;
     }
 
     @Override
-    public void setType(int newType) {
-        this.type = newType;
+    public void setType(int tipo) {
+        this.tipo = tipo;
     }
 
     @Override
     public int getType() {
-        return type;
+        return tipo;
     }
 }
